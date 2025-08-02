@@ -1,0 +1,128 @@
+/* public/css/custom.css */
+body {
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 30 px;
+}
+
+/* Botones con sombra */
+.btn-success {
+  box-shadow: 0 4px 6px rgba(46, 204, 113, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+}
+
+
+
+/* Navbar personalizado */
+.navbar {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+
+}
+
+
+.custom-navbar {
+  background-color: #1c2f3d !important;
+  padding: 10px 20px;
+}   
+
+
+.navbar-brand {
+  font-size: 40px;
+  color: #fff !important;
+  letter-spacing: 2px;
+}
+
+.navbar-nav .nav-link {
+  color: #d1d5db; /* color gris claro */
+  font-weight: 600;
+  transition: color 0.3s ease;
+  margin-left: 7px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #f8f9fa !important; /* blanco */
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+.btn-danger {
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  background-color: #1c2f3d !important;
+  margin-top: 4px;
+  border-color: #a09d9d !important;
+}
+
+.btn-danger:hover {
+  background-color: #000000;
+}
+
+
+
+/* Estilos para el formulario de Login */
+
+/* Fondo con degradado 
+body {
+    background: linear-gradient(135deg, #000000, #000000);
+    min-height: 100vh;
+} */
+
+/* Tarjeta del login */
+.card {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+/* Botón de login */
+.btn-primary {
+    background-color: #1c2f3d;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #1c2f3dd3;
+    color: #fff;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+    color: #142d4e !important;
+}
+
+.color-body-custom {
+    background-color: #f0f2f5 !important;
+}
+
+
+
+/* Estilos para el formulario de registro */
+
+
+
+.card {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.btn-success {
+    background-color: #1c2f3d;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #1c2f3d;
+    color: #000;
+}
+
+.letter-custom {
+    color: #142d4e !important;
+    font-weight: 600;
+}
