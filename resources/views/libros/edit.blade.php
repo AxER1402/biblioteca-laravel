@@ -14,6 +14,10 @@
         <input type="text" name="autor" value="{{ $libro->autor }}" class="form-control" required>
     </div>
     <div class="mb-3">
+        <label>Categoría</label>
+        <input type="text" name="categoria" value="{{ $libro->categoria }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
         <label>Disponible</label>
         <select name="disponible" class="form-control">
             <option value="1" {{ $libro->disponible ? 'selected' : '' }}>Sí</option>

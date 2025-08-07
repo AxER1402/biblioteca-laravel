@@ -14,10 +14,15 @@
         <input type="email" name="correo" value="{{ $usuario->correo }}" class="form-control" required>
     </div>
     <div class="mb-3">
-        <label>Tipo</label>
-        <select name="tipo" class="form-control" required>
-            <option value="alumno" {{ $usuario->tipo == 'alumno' ? 'selected' : '' }}>Alumno</option>
-            <option value="profesor" {{ $usuario->tipo == 'profesor' ? 'selected' : '' }}>Profesor</option>
+    <label>Contraseña (dejar vacío para no cambiarla)</label>
+    <input type="password" name="password" class="form-control" autocomplete="new-password">
+</div>
+    <div class="mb-3">
+        <label>Rol</label>
+        <select name="role" class="form-control" required>
+            <option value="alumno" {{ $usuario->role == 'alumno' ? 'selected' : '' }}>Alumno</option>
+            <option value="maestro" {{ $usuario->role == 'maestro' ? 'selected' : '' }}>Maestro</option>
+            <option value="admin" {{ $usuario->role == 'admin' ? 'selected' : '' }}>Administrador</option>
         </select>
     </div>
     <button type="submit" class="btn btn-success">Actualizar</button>

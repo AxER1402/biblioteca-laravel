@@ -15,7 +15,7 @@
         <tr>
             <th>Nombre</th>
             <th>Correo</th>
-            <th>Tipo</th>
+            <th>Rol</th> {{-- Cambiado de Tipo a Rol --}}
             <th>Acciones</th>
         </tr>
     </thead>
@@ -24,7 +24,7 @@
         <tr>
             <td>{{ $usuario->nombre }}</td>
             <td>{{ $usuario->correo }}</td>
-            <td>{{ ucfirst($usuario->tipo) }}</td>
+            <td>{{ ucfirst($usuario->role) }}</td> {{-- Cambiado de tipo a role --}}
             <td>
                 <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-warning btn-sm">Editar</a>
                 <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" style="display:inline-block;">

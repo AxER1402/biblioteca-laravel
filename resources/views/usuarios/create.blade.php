@@ -14,10 +14,11 @@
         <input type="email" name="correo" class="form-control" required>
     </div>
     <div class="mb-3">
-        <label>Tipo</label>
-        <select name="tipo" class="form-control" required>
+        <label>Rol</label>
+        <select name="role" class="form-control" required>
             <option value="alumno">Alumno</option>
-            <option value="profesor">Profesor</option>
+            <option value="maestro">Maestro</option>
+            <option value="admin">Administrador</option>
         </select>
     </div>
     <button type="submit" class="btn btn-success">Guardar</button>

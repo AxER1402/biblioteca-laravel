@@ -126,3 +126,17 @@ body {
     color: #142d4e !important;
     font-weight: 600;
 }
+
+/* Cards en la misma línea y con espacio entre ellas */
+.mis-cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.mis-card {
+    min-width: 250px;
+    flex: 1 1 250px;
+    margin-bottom: 0 !important;
+}

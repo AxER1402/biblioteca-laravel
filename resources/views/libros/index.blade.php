@@ -15,6 +15,7 @@
         <tr>
             <th>Título</th>
             <th>Autor</th>
+            <th>Categoría</th> <!-- Nueva columna -->
             <th>Disponible</th>
             <th>Acciones</th>
         </tr>
@@ -24,6 +25,7 @@
         <tr>
             <td>{{ $libro->titulo }}</td>
             <td>{{ $libro->autor }}</td>
+            <td>{{ $libro->categoria }}</td> <!-- Mostrar categoría -->
             <td>{{ $libro->disponible ? 'Sí' : 'No' }}</td>
             <td>
                 <a href="{{ route('libros.edit', $libro) }}" class="btn btn-warning btn-sm">Editar</a>

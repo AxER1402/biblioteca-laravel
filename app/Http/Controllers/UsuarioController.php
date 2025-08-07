@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; // Importar para encriptar contraseña
 
 class UsuarioController extends Controller
 {
@@ -23,10 +24,15 @@ class UsuarioController extends Controller
         $request->validate([
             'nombre' => 'required',
             'correo' => 'required|email|unique:usuarios',
-            'tipo' => 'required|in:alumno,profesor'
+            'role' => 'required|in:admin,maestro,alumno',
+            'password' => 'required|min:6',
         ]);
 
-        Usuario::create($request->all());
+        $data = $request->only('nombre', 'correo', 'role');
+        $data['password'] = Hash::make($request->password);
+
+        Usuario::create($data);
+
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado con éxito.');
     }
 
@@ -36,16 +42,24 @@ class UsuarioController extends Controller
     }
 
     public function update(Request $request, Usuario $usuario)
-    {
-        $request->validate([
-            'nombre' => 'required',
-            'correo' => 'required|email|unique:usuarios,correo,'.$usuario->id,
-            'tipo' => 'required|in:alumno,profesor'
-        ]);
+{
+    $request->validate([
+        'nombre' => 'required',
+        'correo' => 'required|email|unique:usuarios,correo,'.$usuario->id,
+        'role' => 'required|in:admin,maestro,alumno',
+        'password' => 'nullable',
+    ]);
 
-        $usuario->update($request->all());
-        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado con éxito.');
+    $data = $request->only(['nombre', 'correo', 'role']);
+
+    if ($request->filled('password')) {
+        $data['password'] = $request->password; // sin hash, tal cual
     }
+
+    $usuario->update($data);
+
+    return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado con éxito.');
+}
 
     public function destroy(Usuario $usuario)
     {

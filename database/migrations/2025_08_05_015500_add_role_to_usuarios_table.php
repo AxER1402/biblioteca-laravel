@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->string('password')->after('correo');
-            $table->string('role')->default('alumno')->after('password'); // Agregamos el rol
+            //
         });
     }
 
@@ -23,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropColumn('password');
-            $table->dropColumn('role');
+            //
         });
     }
 };

@@ -23,7 +23,8 @@ class LibroController extends Controller
         $request->validate([
             'titulo' => 'required',
             'autor' => 'required',
-            'disponible' => 'required|boolean'
+            'categoria' => 'required',
+            'disponible' => 'required|boolean',
         ]);
 
         Libro::create($request->all());
@@ -40,7 +41,8 @@ class LibroController extends Controller
         $request->validate([
             'titulo' => 'required',
             'autor' => 'required',
-            'disponible' => 'required|boolean'
+            'categoria' => 'required',
+            'disponible' => 'required|boolean',
         ]);
 
         $libro->update($request->all());
@@ -51,5 +53,30 @@ class LibroController extends Controller
     {
         $libro->delete();
         return redirect()->route('libros.index')->with('success', 'Libro eliminado con éxito.');
+    }
+
+    public function buscar(Request $request)
+    {
+        $titulo = $request->input('titulo');
+        $autor = $request->input('autor');
+        $categoria = $request->input('categoria');
+
+        $query = Libro::query();
+
+        if ($titulo) {
+            $query->where('titulo', 'like', "%{$titulo}%");
+        }
+
+        if ($autor) {
+            $query->where('autor', 'like', "%{$autor}%");
+        }
+
+        if ($categoria) {
+            $query->where('categoria', 'like', "%{$categoria}%");
+        }
+
+        $libros = $query->get();
+
+        return view('dashboard', compact('libros', 'titulo', 'autor', 'categoria'));
     }
 }

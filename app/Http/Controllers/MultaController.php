@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Multa;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -86,4 +87,27 @@ class MultaController extends Controller
         $multa->delete();
         return redirect()->route('multas.index')->with('success', 'Multa eliminada con éxito.');
     }
+
+
+    public function misMultas()
+    {
+        // Obtener multas solo del usuario autenticado
+        $multas = Multa::where('usuario_id', Auth::id())->get();
+
+        return view('multas.mis', compact('multas'));
+    }
+
+    public function pagar(Multa $multa)
+{
+    // Verifica que la multa pertenezca al usuario autenticado
+    if ($multa->usuario_id !== Auth::id()) {
+        abort(403, 'No tienes permiso para pagar esta multa.');
+    }
+
+    // Marcar como pagada
+    $multa->update(['pagada' => 1]);
+
+    return redirect()->route('multas.mis')->with('success', 'Multa pagada con éxito.');
+}
+
 }

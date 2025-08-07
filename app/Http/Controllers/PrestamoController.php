@@ -33,20 +33,23 @@ class PrestamoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'usuario_id' => 'required|exists:usuarios,id',
             'libro_id' => 'required|exists:libros,id',
             'fecha_inicio' => 'required|date',
             'fecha_vencimiento' => 'required|date|after_or_equal:fecha_inicio'
         ]);
 
-        Prestamo::create($request->all());
+        Prestamo::create([
+            'usuario_id' => auth()->id(), // usuario autenticado
+            'libro_id' => $request->libro_id,
+            'fecha_inicio' => $request->fecha_inicio,
+            'fecha_vencimiento' => $request->fecha_vencimiento,
+        ]);
 
-        // Cambiar disponibilidad del libro
         $libro = Libro::find($request->libro_id);
         $libro->disponible = 0;
         $libro->save();
 
-        return redirect()->route('prestamos.index')->with('success', 'Préstamo registrado con éxito.');
+        return redirect()->route('dashboard')->with('success', 'Reserva realizada con éxito.');
     }
 
     public function edit(Prestamo $prestamo)
@@ -100,4 +103,18 @@ class PrestamoController extends Controller
         $prestamo->delete();
         return redirect()->route('prestamos.index')->with('success', 'Préstamo eliminado con éxito.');
     }
+    public function misPrestamos()
+{
+    
+    $usuarioId = auth()->id();
+
+    // Traer todos los préstamos del usuario con su libro relacionado
+    $prestamos = Prestamo::with('libro')
+        ->where('usuario_id', $usuarioId)
+        ->orderBy('fecha_inicio', 'desc')
+        ->get();
+
+    return view('prestamos.mis_prestamos', compact('prestamos'));
+}
+
 }

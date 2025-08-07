@@ -9,22 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+public function up()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->string('password')->after('correo');
-            $table->string('role')->default('alumno')->after('password'); // Agregamos el rol
+            $table->renameColumn('tipo', 'role');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropColumn('password');
-            $table->dropColumn('role');
+            $table->renameColumn('role', 'tipo');
         });
     }
 };
